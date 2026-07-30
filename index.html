@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESIMAL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-icon">◇</span>
+          <span class="logo-text">DESIMAL</span>
+        </div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-page="dukungan">Dukungan Manajemen</a>
+        <a href="#" class="nav-link" data-page="pelayanan">P S T</a>
+      </nav>
+      <div class="search-bar" id="headerSearch">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Cari indikator, layanan..." autocomplete="off">
+        <button class="search-clear" id="searchClear" aria-label="Hapus pencarian">&times;</button>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- DASHBOARD -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <h1 class="page-title">Dashboard Kinerja</h1>
+        <p class="page-subtitle">Ikhtisar 20 Indikator Kinerja Utama Triwulan II / 2026</p>
+      </div>
+
+      <div class="kpi-grid" id="kpiGrid">
+        <!-- 20 KPI cards injected by JS -->
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Capaian Kinerja per Triwulan</h3>
+            <span class="badge">2026</span>
+          </div>
+          <div class="chart-card-body">
+            <canvas id="chartBar"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Realisasi Anggaran (Rp)</h3>
+            <span class="badge">2026</span>
+          </div>
+          <div class="chart-card-body">
+            <canvas id="chartLine"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Komposisi Indikator</h3>
+          </div>
+          <div class="chart-card-body">
+            <canvas id="chartPie"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Skor per Bidang</h3>
+          </div>
+          <div class="chart-card-body">
+            <canvas id="chartDoughnut"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUKUNGAN MANAJEMEN (gabungan Internal, SDM, Manajemen Kinerja) -->
+    <section class="page" id="page-dukungan">
+      <div class="page-header">
+        <h1 class="page-title">Dukungan Manajemen</h1>
+        <p class="page-subtitle">Akuntabilitas Kinerja, Layanan Internal, SDM, dan Manajemen Kinerja</p>
+      </div>
+
+      <h2 class="section-title">Akuntabilitas Kinerja</h2>
+      <div class="content-cards">
+        <div class="content-card">
+          <div class="content-card-icon">📊</div>
+          <h2>SAKIP</h2>
+          <p>Sistem Akuntabilitas Kinerja Instansi Pemerintah — mengukur capaian kinerja organisasi secara sistematis dan terukur.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">82,5</span>
+              <span class="content-stat-label">Nilai SAKIP (B)</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">95,2%</span>
+              <span class="content-stat-label">Capaian IKU</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">88,1%</span>
+              <span class="content-stat-label">Perjanjian Kinerja</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">🛡️</div>
+          <h2>Pembangunan Zona Integritas</h2>
+          <p>Upaya membangun birokrasi yang bersih, akuntabel, dan melayani menuju Wilayah Bebas dari Korupsi dan Wilayah Birokrasi Bersih Melayani.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">86,3</span>
+              <span class="content-stat-label">Indeks RB</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">78,5</span>
+              <span class="content-stat-label">Nilai PZI</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">92,0%</span>
+              <span class="content-stat-label">Kepatuhan</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">💎</div>
+          <h2>Indeks Implementasi Ber-AKHLAK</h2>
+          <p>Pengukuran penerapan nilai-nilai budaya kerja Ber-AKHLAK (Amanah, Kompeten, Harmonis, Loyal, Adaptif, Kolaboratif).</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">84,7</span>
+              <span class="content-stat-label">Indeks AKHLAK</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">87,3</span>
+              <span class="content-stat-label">Amanah</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">82,1</span>
+              <span class="content-stat-label">Kompeten</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Layanan Internal</h2>
+      <div class="content-cards">
+        <div class="content-card">
+          <div class="content-card-icon">📦</div>
+          <h2>Layanan BMN</h2>
+          <p>Pengelolaan Barang Milik Negara meliputi inventarisasi, penatausahaan, dan optimalisasi aset negara.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">97,2%</span>
+              <span class="content-stat-label">Inventarisasi</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">94,5%</span>
+              <span class="content-stat-label">Penatausahaan</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">88,3%</span>
+              <span class="content-stat-label">Optimalisasi</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">📢</div>
+          <h2>Layanan Humas dan Informasi</h2>
+          <p>Pelayanan informasi publik, kehumasan, dan komunikasi publik untuk mendukung keterbukaan informasi.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">91,8%</span>
+              <span class="content-stat-label">Keterbukaan Info</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">96,0%</span>
+              <span class="content-stat-label">Response Rate</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">85,7</span>
+              <span class="content-stat-label">IKM</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">🏢</div>
+          <h2>Layanan Umum</h2>
+          <p>Pelayanan administrasi umum, tata usaha, dan dukungan operasional perkantoran.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">93,4%</span>
+              <span class="content-stat-label">Kecepatan Layanan</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">98,1%</span>
+              <span class="content-stat-label">Ketepatan Dokumen</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">89,6%</span>
+              <span class="content-stat-label">Kepuasan</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">🖥️</div>
+          <h2>Layanan Perkantoran</h2>
+          <p>Dukungan operasional perkantoran, sarana prasarana, dan tata kelola lingkungan kerja.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">95,0%</span>
+              <span class="content-stat-label">Sarana Prasarana</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">92,3%</span>
+              <span class="content-stat-label">Operasional</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">87,9%</span>
+              <span class="content-stat-label">Lingkungan Kerja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Manajemen SDM</h2>
+      <div class="content-cards">
+        <div class="content-card full">
+          <div class="content-card-icon">👥</div>
+          <h2>Layanan Manajemen SDM</h2>
+          <p>Pengelolaan sumber daya manusia aparatur meliputi perencanaan, pengembangan, mutasi, promosi, kesejahteraan, dan pemberhentian pegawai.</p>
+          <div class="sdm-grid">
+            <div class="sdm-item">
+              <span class="sdm-value">248</span>
+              <span class="sdm-label">Total Pegawai</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">156</span>
+              <span class="sdm-label">PNS</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">92</span>
+              <span class="sdm-label">PPPK</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">96,3%</span>
+              <span class="sdm-label">Tingkat Disiplin</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">82,5</span>
+              <span class="sdm-label">Indeks Merit</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">91,7%</span>
+              <span class="sdm-label">Pengembangan</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">94,2%</span>
+              <span class="sdm-label">Kesejahteraan</span>
+            </div>
+            <div class="sdm-item">
+              <span class="sdm-value">88,6%</span>
+              <span class="sdm-label">Kepatuhan LHKPN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Manajemen Kinerja</h2>
+      <div class="content-cards">
+        <div class="content-card">
+          <div class="content-card-icon">📈</div>
+          <h2>Layanan Pemantauan dan Evaluasi</h2>
+          <p>Pemantauan dan evaluasi capaian kinerja secara berkala untuk memastikan tercapainya target yang ditetapkan.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">94,7%</span>
+              <span class="content-stat-label">Monev Tepat Waktu</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">88,2%</span>
+              <span class="content-stat-label">Tindak Lanjut</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">92,5%</span>
+              <span class="content-stat-label">Kualitas Laporan</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">💰</div>
+          <h2>Layanan Manajemen Keuangan</h2>
+          <p>Pengelolaan keuangan yang transparan, akuntabel, dan tepat waktu sesuai dengan ketentuan perundang-undangan.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">93,8%</span>
+              <span class="content-stat-label">Realisasi Anggaran</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">WTP</span>
+              <span class="content-stat-label">Opini BPK</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">98,5%</span>
+              <span class="content-stat-label">Ketepatan Pelaporan</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-card">
+          <div class="content-card-icon">🔄</div>
+          <h2>Layanan Reformasi Kinerja</h2>
+          <p>Inisiatif reformasi birokrasi untuk meningkatkan efektivitas, efisiensi, dan kualitas layanan organisasi.</p>
+          <div class="content-stats">
+            <div class="content-stat">
+              <span class="content-stat-value">85,3</span>
+              <span class="content-stat-label">Indeks Reformasi</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">79,4</span>
+              <span class="content-stat-label">Inovasi</span>
+            </div>
+            <div class="content-stat">
+              <span class="content-stat-value">91,2%</span>
+              <span class="content-stat-label">Efektivitas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PELAYANAN STATISTIK TERPADU -->
+    <section class="page" id="page-pelayanan">
+      <div class="page-header">
+        <h1 class="page-title">Pelayanan Statistik Terpadu</h1>
+        <p class="page-subtitle">Jenis Layanan dan Evaluasi Pelayanan Publik</p>
+      </div>
+
+      <h2 class="section-title">Jenis Layanan</h2>
+      <div class="layanan-grid">
+        <div class="layanan-card">
+          <div class="layanan-icon">📚</div>
+          <div class="layanan-body">
+            <h3>Perpustakaan</h3>
+            <p>Layanan baca di tempat dan perpustakaan daring.</p>
+            <div class="layanan-detail">
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">2.450</span>
+                <span class="layanan-stat-label">Koleksi</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">1.280</span>
+                <span class="layanan-stat-label">Pengunjung/bln</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">96,5%</span>
+                <span class="layanan-stat-label">Kepuasan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layanan-card">
+          <div class="layanan-icon">💬</div>
+          <div class="layanan-body">
+            <h3>Konsultasi Statistik</h3>
+            <p>Layanan konsultasi statistik untuk membantu pengguna dalam pemilihan data, metodologi, analisis, dan interpretasi statistik.</p>
+            <div class="layanan-detail">
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">320</span>
+                <span class="layanan-stat-label">Konsultasi/bln</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">2,5 hari</span>
+                <span class="layanan-stat-label">Rata-rata respon</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">94,2%</span>
+                <span class="layanan-stat-label">Kepuasan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layanan-card">
+          <div class="layanan-icon">💳</div>
+          <div class="layanan-body">
+            <h3>Produk Statistik Berbayar</h3>
+            <p>Layanan penjualan data mikro, peta wilayah kerja statistik dan publikasi statistik tanpa watermark sesuai dengan peraturan perundang-undangan.</p>
+            <div class="layanan-detail">
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">185</span>
+                <span class="layanan-stat-label">Produk/bln</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">Rp 45,2 Jt</span>
+                <span class="layanan-stat-label">Pendapatan/bln</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">98,1%</span>
+                <span class="layanan-stat-label">Tepat Waktu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layanan-card">
+          <div class="layanan-icon">📋</div>
+          <div class="layanan-body">
+            <h3>Rekomendasi Statistik</h3>
+            <p>Layanan penerbitan rekomendasi statistik untuk kegiatan survei, dan kompilasi produk administrasi yang dilaksanakan oleh instansi pemerintah.</p>
+            <div class="layanan-detail">
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">45</span>
+                <span class="layanan-stat-label">Rekomendasi/bln</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">3 hari</span>
+                <span class="layanan-stat-label">Proses rata-rata</span>
+              </div>
+              <div class="layanan-stat">
+                <span class="layanan-stat-value">100%</span>
+                <span class="layanan-stat-label">Tepat Waktu</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <h2 class="section-title">Pemantauan dan Evaluasi Kinerja (PEKPPP)</h2>
+      <div class="pekppp-grid">
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">✓</div>
+          <h3>Kebijakan Pelayanan</h3>
+          <p>Kemampuan petugas memberikan layanan yang akurat, konsisten, dan sesuai dengan standar yang telah ditetapkan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,620</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">⚡</div>
+          <h3>Profesionalisme SDM</h3>
+          <p>Kecepatan dan ketepatan petugas dalam merespons kebutuhan serta menangani keluhan pengguna layanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,300</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🛡️</div>
+          <h3>Sarana Prasarana</h3>
+          <p>Pengetahuan, kompetensi, dan kesopanan petugas serta kemampuan menumbuhkan kepercayaan pengguna.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,736</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">❤️</div>
+          <h3>Sistem Informasi Pelayanan Publik</h3>
+          <p>Perhatian individual, kemudahan komunikasi, dan pemahaman terhadap kebutuhan spesifik pengguna layanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,700</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🏛️</div>
+          <h3>Konsultasi dan Pengaduan</h3>
+          <p>Kualitas fasilitas fisik, peralatan, personel, dan sarana komunikasi yang menunjang pelayanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,750</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">🔓</div>
+          <h3>Inovasi</h3>
+          <p>Kemudahan pengguna dalam mengakses layanan, termasuk prosedur, persyaratan, dan sistem informasi.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">4,500</span>
+            <span class="pekppp-label">F02</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>DESIMAL &copy; 2026 — Dashboard Evaluasi dan Manajemen Akuntabilitas Layanan</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
