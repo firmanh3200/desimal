@@ -47,6 +47,76 @@ function renderKPIs(filter = '') {
   }).join('');
 }
 
+const data2025 = [
+  { no: 1,  label: 'Persentase Publikasi/Laporan Statistik Kependudukan Dan Ketenagakerjaan Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 2,  label: 'Persentase Publikasi/Laporan Statistik Kesejahteraan Rakyat Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 3,  label: 'Persentase Publikasi/Laporan Statistik Ketahanan Sosial Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 4,  label: 'Persentase Publikasi/Laporan Statistik Sumber Daya Hayati yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 5,  label: 'Persentase Publikasi/Laporan Statistik Sumber Daya Mineral dan Konstruksi yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 6,  label: 'Persentase Publikasi/Laporan Statistik Industri Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 7,  label: 'Persentase Publikasi/Laporan Statistik Distribusi Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 8,  label: 'Persentase Publikasi/Laporan Statistik Harga Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 9,  label: 'Persentase Publikasi/Laporan Statistik Jasa yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 10, label: 'Persentase Publikasi/Laporan Neraca Produksi Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 11, label: 'Persentase Publikasi/Laporan Neraca Pengeluaran Yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 12, label: 'Persentase Publikasi/Laporan Analisis Statistik dan Neraca Satelit yang Berkualitas', target: 100, realisasi: 100 },
+  { no: 13, label: 'Indeks Keberhasilan Penyediaan Indikator Sasaran Visi Indonesia Emas dan 45 Indikator Utama Pembangunan', target: null, realisasi: null },
+  { no: 14, label: 'Persentase Kumulatif Desa Yang Berpredikat Desa Cinta Statistik', target: null, realisasi: null },
+  { no: 15, label: 'Tingkat Penyelenggaraan Pembinaan Statistik Sektoral sesuai standar', target: 79.95, realisasi: 105 },
+  { no: 16, label: 'Persentase Kegiatan Edukasi dan Promosi Statistik yang terselenggara dengan baik', target: 91, realisasi: 51.39 },
+  { no: 17, label: 'Indeks Pelayanan Publik - Penilaian Mandiri', target: 4.420, realisasi: 4.797 },
+  { no: 18, label: 'Nilai SAKIP oleh Inspektorat', target: 76, realisasi: 75.75 },
+  { no: 19, label: 'Indeks Implementasi Berakhlak', target: 67.16, realisasi: 70.76 },
+  { no: 20, label: 'Tingkat Keberhasilan Pembangunan Zona Integritas', target: 61.54, realisasi: 88.46 },
+];
+
+function renderTable2025() {
+  const tbody = document.getElementById('table2025Body');
+  tbody.innerHTML = data2025.map(d => {
+    let pct = '-';
+    let capped = '-';
+    let barW = 0;
+    let barColor = 'orange';
+    let cappedBarW = 0;
+    if (d.target !== null && d.realisasi !== null) {
+      const raw = (d.realisasi / d.target) * 100;
+      pct = raw.toFixed(2) + '%';
+      const cappedVal = Math.min(raw, 120);
+      capped = cappedVal.toFixed(2) + '%';
+      barW = Math.min(raw, 100);
+      cappedBarW = Math.min(cappedVal, 100);
+      barColor = raw >= 100 ? 'green' : raw >= 80 ? 'orange' : 'red';
+    }
+    const cappedClass = d.target !== null && d.realisasi !== null && (d.realisasi / d.target) * 100 > 120 ? 'capped' : '';
+    const na = d.target === null ? 'data-na' : '';
+    return `
+      <tr ${na ? 'class="empty-row"' : ''}>
+        <td class="td-no">${d.no}</td>
+        <td class="td-label">${d.label}</td>
+        <td class="td-num">${d.target !== null ? d.target : '-'}</td>
+        <td class="td-num">${d.realisasi !== null ? d.realisasi : '-'}</td>
+        <td class="td-num">${pct}</td>
+        <td class="td-num ${cappedClass}">${capped}</td>
+      </tr>
+      ${d.target !== null && d.realisasi !== null ? `
+      <tr class="bar-row">
+        <td colspan="6">
+          <div class="bar-group">
+            <span class="bar-label">% asli</span>
+            <div class="bar-track">
+              <div class="bar-fill ${barColor}" style="width:${barW}%"></div>
+            </div>
+            <span class="bar-label">capped 120%</span>
+            <div class="bar-track">
+              <div class="bar-fill ${barColor}" style="width:${cappedBarW}%"></div>
+            </div>
+          </div>
+        </td>
+      </tr>` : ''}
+    `;
+  }).join('');
+}
+
 const searchIndex = [
   ...kpiData.map(k => ({ page: 'dashboard', title: k.label, subtitle: k.value, icon: k.icon })),
   { page: 'dukungan', title: 'SAKIP', subtitle: 'Sistem Akuntabilitas Kinerja Instansi Pemerintah', icon: '📊' },
@@ -70,12 +140,14 @@ const searchIndex = [
   { page: 'pelayanan', title: 'Konsultasi', subtitle: 'Layanan konsultasi data dan metodologi statistik', icon: '💬' },
   { page: 'pelayanan', title: 'Produk Berbayar', subtitle: 'Layanan data dan publikasi statistik khusus', icon: '💳' },
   { page: 'pelayanan', title: 'Rekomendasi', subtitle: 'Layanan penerbitan rekomendasi statistik', icon: '📋' },
+  ...data2025.map(d => ({ page: 'tahun2025', title: d.label, subtitle: d.target !== null ? `Target: ${d.target}, Realisasi: ${d.realisasi}` : 'Data belum tersedia', icon: '📊' })),
 ];
 
 const pageLabels = {
   dashboard: 'Dashboard',
   dukungan: 'Dukungan Manajemen',
   pelayanan: 'Pelayanan Statistik Terpadu',
+  tahun2025: 'Capaian 2025',
 };
 
 function renderSearchResults(query) {
@@ -296,6 +368,7 @@ function navigate(page) {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderKPIs();
+  renderTable2025();
   setupSearch();
   initCharts();
 

@@ -16,17 +16,18 @@
           <span class="logo-text">DESIMAL</span>
         </div>
       </div>
+      <nav class="nav" id="nav">
+        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-page="dukungan">Dukungan Manajemen</a>
+        <a href="#" class="nav-link" data-page="pelayanan">Pelayanan Terpadu</a>
+        <a href="#" class="nav-link" data-page="tahun2025">2025</a>
+      </nav>
       <div class="search-bar" id="headerSearch">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input type="text" class="search-input" id="searchInput" placeholder="Cari indikator, layanan..." autocomplete="off">
         <button class="search-clear" id="searchClear" aria-label="Hapus pencarian">&times;</button>
         <div class="search-results" id="searchResults"></div>
       </div>
-      <nav class="nav" id="nav">
-        <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
-        <a href="#" class="nav-link" data-page="dukungan">Dukungan Manajemen</a>
-        <a href="#" class="nav-link" data-page="pelayanan">P S T</a>
-      </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
     </div>
   </header>
@@ -341,7 +342,65 @@
     <section class="page" id="page-pelayanan">
       <div class="page-header">
         <h1 class="page-title">Pelayanan Statistik Terpadu</h1>
-        <p class="page-subtitle">Jenis Layanan dan Evaluasi Pelayanan Publik</p>
+        <p class="page-subtitle">Evaluasi Kualitas Pelayanan dan Jenis Layanan Statistik</p>
+      </div>
+
+      <h2 class="section-title">Aspek PEKPPP</h2>
+      <div class="pekppp-grid">
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">✓</div>
+          <h3>Keandalan</h3>
+          <p>Kemampuan petugas memberikan layanan yang akurat, konsisten, dan sesuai dengan standar yang telah ditetapkan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">89,5%</span>
+            <span class="pekppp-label">Skor Keandalan</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">⚡</div>
+          <h3>Ketanggapan</h3>
+          <p>Kecepatan dan ketepatan petugas dalam merespons kebutuhan serta menangani keluhan pengguna layanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">87,2%</span>
+            <span class="pekppp-label">Skor Ketanggapan</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🛡️</div>
+          <h3>Jaminan</h3>
+          <p>Pengetahuan, kompetensi, dan kesopanan petugas serta kemampuan menumbuhkan kepercayaan pengguna.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">90,3%</span>
+            <span class="pekppp-label">Skor Jaminan</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">❤️</div>
+          <h3>Empati</h3>
+          <p>Perhatian individual, kemudahan komunikasi, dan pemahaman terhadap kebutuhan spesifik pengguna layanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">86,8%</span>
+            <span class="pekppp-label">Skor Empati</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🏛️</div>
+          <h3>Bukti Fisik</h3>
+          <p>Kualitas fasilitas fisik, peralatan, personel, dan sarana komunikasi yang menunjang pelayanan.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">88,6%</span>
+            <span class="pekppp-label">Skor Fisik</span>
+          </div>
+        </div>
+        <div class="pekppp-card">
+          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">🔓</div>
+          <h3>Aksesibilitas</h3>
+          <p>Kemudahan pengguna dalam mengakses layanan, termasuk prosedur, persyaratan, dan sistem informasi.</p>
+          <div class="pekppp-score">
+            <span class="pekppp-value">91,1%</span>
+            <span class="pekppp-label">Skor Akses</span>
+          </div>
+        </div>
       </div>
 
       <h2 class="section-title">Jenis Layanan</h2>
@@ -350,7 +409,7 @@
           <div class="layanan-icon">📚</div>
           <div class="layanan-body">
             <h3>Perpustakaan</h3>
-            <p>Layanan baca di tempat dan perpustakaan daring.</p>
+            <p>Layanan baca di tempat dan peminjaman koleksi publikasi statistik, termasuk buku, jurnal, laporan, dan majalah statistik.</p>
             <div class="layanan-detail">
               <div class="layanan-stat">
                 <span class="layanan-stat-value">2.450</span>
@@ -370,7 +429,7 @@
         <div class="layanan-card">
           <div class="layanan-icon">💬</div>
           <div class="layanan-body">
-            <h3>Konsultasi Statistik</h3>
+            <h3>Konsultasi</h3>
             <p>Layanan konsultasi statistik untuk membantu pengguna dalam pemilihan data, metodologi, analisis, dan interpretasi statistik.</p>
             <div class="layanan-detail">
               <div class="layanan-stat">
@@ -391,8 +450,8 @@
         <div class="layanan-card">
           <div class="layanan-icon">💳</div>
           <div class="layanan-body">
-            <h3>Produk Statistik Berbayar</h3>
-            <p>Layanan penjualan data mikro, peta wilayah kerja statistik dan publikasi statistik tanpa watermark sesuai dengan peraturan perundang-undangan.</p>
+            <h3>Produk Berbayar</h3>
+            <p>Layanan penyediaan data dan publikasi statistik khusus yang memerlukan biaya penggandaan, pengolahan, atau pengiriman.</p>
             <div class="layanan-detail">
               <div class="layanan-stat">
                 <span class="layanan-stat-value">185</span>
@@ -412,8 +471,8 @@
         <div class="layanan-card">
           <div class="layanan-icon">📋</div>
           <div class="layanan-body">
-            <h3>Rekomendasi Statistik</h3>
-            <p>Layanan penerbitan rekomendasi statistik untuk kegiatan survei, dan kompilasi produk administrasi yang dilaksanakan oleh instansi pemerintah.</p>
+            <h3>Rekomendasi</h3>
+            <p>Layanan penerbitan rekomendasi statistik untuk kegiatan survei, sensus, dan penelitian yang memerlukan persetujuan teknis.</p>
             <div class="layanan-detail">
               <div class="layanan-stat">
                 <span class="layanan-stat-value">45</span>
@@ -431,65 +490,29 @@
           </div>
         </div>
       </div>
-      
-      <h2 class="section-title">Pemantauan dan Evaluasi Kinerja (PEKPPP)</h2>
-      <div class="pekppp-grid">
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">✓</div>
-          <h3>Kebijakan Pelayanan</h3>
-          <p>Kemampuan petugas memberikan layanan yang akurat, konsisten, dan sesuai dengan standar yang telah ditetapkan.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,620</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">⚡</div>
-          <h3>Profesionalisme SDM</h3>
-          <p>Kecepatan dan ketepatan petugas dalam merespons kebutuhan serta menangani keluhan pengguna layanan.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,300</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🛡️</div>
-          <h3>Sarana Prasarana</h3>
-          <p>Pengetahuan, kompetensi, dan kesopanan petugas serta kemampuan menumbuhkan kepercayaan pengguna.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,736</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">❤️</div>
-          <h3>Sistem Informasi Pelayanan Publik</h3>
-          <p>Perhatian individual, kemudahan komunikasi, dan pemahaman terhadap kebutuhan spesifik pengguna layanan.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,700</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--orange-100);color:var(--orange-600)">🏛️</div>
-          <h3>Konsultasi dan Pengaduan</h3>
-          <p>Kualitas fasilitas fisik, peralatan, personel, dan sarana komunikasi yang menunjang pelayanan.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,750</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-        <div class="pekppp-card">
-          <div class="pekppp-icon" style="background:var(--green-100);color:var(--green-600)">🔓</div>
-          <h3>Inovasi</h3>
-          <p>Kemudahan pengguna dalam mengakses layanan, termasuk prosedur, persyaratan, dan sistem informasi.</p>
-          <div class="pekppp-score">
-            <span class="pekppp-value">4,500</span>
-            <span class="pekppp-label">F02</span>
-          </div>
-        </div>
-      </div>
+    </section>
 
+    <!-- TAHUN 2025 -->
+    <section class="page" id="page-tahun2025">
+      <div class="page-header">
+        <h1 class="page-title">Capaian 2025</h1>
+        <p class="page-subtitle">Realisasi 20 Indikator Kinerja Utama Tahun 2025 (maks 120%)</p>
+      </div>
+      <div class="table-wrap" id="table2025Wrap">
+        <table class="data-table" id="table2025">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Indikator</th>
+              <th>Target</th>
+              <th>Realisasi</th>
+              <th>%</th>
+              <th>% (capped 120%)</th>
+            </tr>
+          </thead>
+          <tbody id="table2025Body"></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
